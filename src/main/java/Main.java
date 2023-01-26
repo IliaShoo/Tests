@@ -1,36 +1,46 @@
-public class Main {
-    public static void main(String[] args) throws Exception{
+import java.util.Scanner;
 
-        int[] arr = {14, 16, 19, 32, 32, 32, 56, 69, 72};
-        int newBook = -3;
+class Main{
+    public static void main(String[] args) {
 
-        int result = bynarySearch(arr, newBook);
+        Scanner scanner= new Scanner(System.in);
+        Calculator calculator =new Calculator();
 
-        System.out.println(result);
+        int first = calculator.sub(25,5);
+        int second = calculator.div(100,20);
+        int third = calculator.summ(20,20);
+        int fourth = calculator.multiply(10,3);
 
-    }
+        int result = comparison(first,second,third,fourth);
+        System.out.println("Your result is "+ result );
 
+        int custom = scanner.nextInt();
 
-    public static int bynarySearch(int arr[], int newBook) throws Exception {
-        if (newBook<1) {
-            throw new MyException("Number must be bigger than 0");
-        }
-        int low = 0;
-        int high = arr.length - 1;
-        int amountOfBooks = 0;
-        while (low <= high) {
-            int middle = (low + high) / 2;
-            if (arr[middle] <= newBook) {
-                low = middle + 1;
-            } else if (arr[middle] > newBook) {
-                high = middle - 1;
-            }
-        }
-        amountOfBooks = arr.length - low;
-        return amountOfBooks;
+        System.out.println(recursion(custom,result));
+        ;
 
     }
 
+    public static int comparison(int first, int second,int third, int fourth){
+
+        int result = 0;
+        int one = first + second;
+        int two = third + fourth;
+        if(one>two){
+            result = one - two;
+        }else{
+            result = two + one;
+        }
+        return result;
+    }
+
+    public static int recursion(int custom, int result) {
+        int resursionInt =1;
+        if(custom == 0){
+            return resursionInt;
+        }else{
+            resursionInt = result * recursion(custom-1,result);
+        }
+        return resursionInt;
+    }
 }
-
-
